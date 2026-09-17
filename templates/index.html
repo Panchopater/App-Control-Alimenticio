@@ -6,7 +6,7 @@
     <title>Control Metabólico</title>
     <style>
         :root {
-            --primary: #00a545;
+            --primary: #2563eb;
             --danger: #dc2626;
             --success: #16a34a;
             --bg: #f3f4f6;
@@ -55,6 +55,8 @@
                     <option value="Pancho">Pancho</option>
                     <option value="Angie">Angie</option>
                     <option value="Vitto">Vitto</option>
+                    <option value="Fede">Fede</option>
+                    <option value="Gabi">Gabi</option>
                 </select>
             </div>
             <div>
@@ -76,14 +78,13 @@
                 <input type="text" id="alimento" placeholder="Huevos duros, Nesquik, etc.">
             </div>
             <div>
-                <label>Gramos</label>
+                <label>Gramos / Mililitros</label>
                 <input type="number" id="gramos" placeholder="100">
             </div>
         </div>
         <button onclick="buscarYAgregar()" style="margin-top: 15px;">🔍 Buscar Alimento</button>
         <p id="msg-comida" style="font-size: 14px; text-align: center; margin-top: 10px; font-weight: bold;"></p>
 
-        <!-- Formulario Manual opcional si no lo encuentra -->
         <div id="box-manual" class="box-manual">
             <p style="margin-top:0; color: var(--danger); font-weight:bold;">⚠️ Alimento no encontrado. Ingresá los valores estimados:</p>
             <div class="grid-2">
