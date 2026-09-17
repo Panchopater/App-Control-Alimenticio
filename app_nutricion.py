@@ -10,7 +10,9 @@ app = Flask(__name__)
 USUARIOS = {
     "Pancho": {"peso_base": 90, "altura_cm": 185, "edad": 20, "sexo": "M"},
     "Angie": {"peso_base": 60, "altura_cm": 165, "edad": 20, "sexo": "F"},
-    "Vitto": {"peso_base": 75, "altura_cm": 170, "edad": 20, "sexo": "M"}
+    "Vitto": {"peso_base": 75, "altura_cm": 170, "edad": 20, "sexo": "M"},
+    "Fede": {"peso_base": 80, "altura_cm": 175, "edad": 30, "sexo": "M"},
+    "Gabi": {"peso_base": 65, "altura_cm": 160, "edad": 30, "sexo": "F"}
 }
 
 METS = {
@@ -32,30 +34,91 @@ MESES_ESPANOL = {
     "September": "Septiembre", "October": "Octubre", "November": "Noviembre", "December": "Diciembre"
 }
 
-# Tabla de composición de Alimentos Argentina (Valores reales por 100g)
+# Tabla de composición de Alimentos Argentina (Valores reales por 100g / 100ml cocidos)
 TABLA_ARGENTINA = {
+    # Carnes y Proteínas
     "huevo": {"calorias": 155, "proteinas": 12.6, "carbohidratos": 1.1, "grasas": 10.6},
     "huevos": {"calorias": 155, "proteinas": 12.6, "carbohidratos": 1.1, "grasas": 10.6},
     "huevo duro": {"calorias": 155, "proteinas": 12.6, "carbohidratos": 1.1, "grasas": 10.6},
-    "huevos duros": {"calorias": 155, "proteinas": 12.6, "carbohidratos": 1.1, "grasas": 10.6},
-    "tomate": {"calorias": 18, "proteinas": 0.9, "carbohidratos": 3.9, "grasas": 0.2},
     "pechuga de pollo": {"calorias": 165, "proteinas": 31.0, "carbohidratos": 0.0, "grasas": 3.6},
     "pollo": {"calorias": 165, "proteinas": 31.0, "carbohidratos": 0.0, "grasas": 3.6},
-    "arroz": {"calorias": 130, "proteinas": 2.7, "carbohidratos": 28.0, "grasas": 0.3},
     "carne de cerdo": {"calorias": 242, "proteinas": 27.0, "carbohidratos": 0.0, "grasas": 14.0},
     "carne vacuna": {"calorias": 250, "proteinas": 26.0, "carbohidratos": 0.0, "grasas": 15.0},
     "asado": {"calorias": 290, "proteinas": 24.0, "carbohidratos": 0.0, "grasas": 21.0},
-    "cafe con leche": {"calorias": 40, "proteinas": 2.0, "carbohidratos": 4.0, "grasas": 1.8},
+    "carne picada": {"calorias": 220, "proteinas": 26.0, "carbohidratos": 0.0, "grasas": 12.0},
+    
+    # Milanesas (Promedio fritas/horno)
+    "milanesa": {"calorias": 260, "proteinas": 19.0, "carbohidratos": 15.0, "grasas": 13.0},
+    "milanesa de carne": {"calorias": 260, "proteinas": 19.0, "carbohidratos": 15.0, "grasas": 13.0},
+    "milanesa de pollo": {"calorias": 250, "proteinas": 18.0, "carbohidratos": 15.0, "grasas": 12.0},
+    "milanesa de cerdo": {"calorias": 270, "proteinas": 17.0, "carbohidratos": 15.0, "grasas": 15.0},
+    "milanesa de soja": {"calorias": 220, "proteinas": 14.0, "carbohidratos": 18.0, "grasas": 10.0},
+    
+    # Carbohidratos y Guarniciones
+    "arroz": {"calorias": 130, "proteinas": 2.7, "carbohidratos": 28.0, "grasas": 0.3},
+    "fideos": {"calorias": 131, "proteinas": 5.0, "carbohidratos": 25.0, "grasas": 1.1},
+    "pure": {"calorias": 88, "proteinas": 1.5, "carbohidratos": 15.0, "grasas": 3.0},
+    "puré": {"calorias": 88, "proteinas": 1.5, "carbohidratos": 15.0, "grasas": 3.0},
+    "pure de papa": {"calorias": 88, "proteinas": 1.5, "carbohidratos": 15.0, "grasas": 3.0},
+    "pure de calabaza": {"calorias": 45, "proteinas": 1.0, "carbohidratos": 10.0, "grasas": 0.5},
+    "calabaza": {"calorias": 40, "proteinas": 1.0, "carbohidratos": 9.0, "grasas": 0.2},
+    "pastel de papa": {"calorias": 140, "proteinas": 6.0, "carbohidratos": 12.0, "grasas": 7.0},
+    "tostadas de arroz": {"calorias": 380, "proteinas": 8.0, "carbohidratos": 82.0, "grasas": 2.0},
+    "pan": {"calorias": 265, "proteinas": 9.0, "carbohidratos": 49.0, "grasas": 3.2},
+    "empanada de carne": {"calorias": 260, "proteinas": 10.0, "carbohidratos": 25.0, "grasas": 13.0},
+    "tarta de jamon y queso": {"calorias": 280, "proteinas": 12.0, "carbohidratos": 22.0, "grasas": 15.0},
+    
+    # Verduras y Frutas
+    "tomate": {"calorias": 18, "proteinas": 0.9, "carbohidratos": 3.9, "grasas": 0.2},
+    "zanahoria": {"calorias": 41, "proteinas": 0.9, "carbohidratos": 10.0, "grasas": 0.2},
+    "acelga cocida": {"calorias": 20, "proteinas": 1.9, "carbohidratos": 4.1, "grasas": 0.1},
+    "lechuga": {"calorias": 15, "proteinas": 1.4, "carbohidratos": 2.9, "grasas": 0.2},
+    "cebolla": {"calorias": 40, "proteinas": 1.1, "carbohidratos": 9.0, "grasas": 0.1},
     "banana": {"calorias": 89, "proteinas": 1.1, "carbohidratos": 22.8, "grasas": 0.3},
     "manzana": {"calorias": 52, "proteinas": 0.3, "carbohidratos": 13.8, "grasas": 0.2},
+    
+    # Comida Rápida y Fiambres
+    "salchicha": {"calorias": 250, "proteinas": 11.0, "carbohidratos": 3.0, "grasas": 21.0},
+    "pancho": {"calorias": 270, "proteinas": 10.0, "carbohidratos": 25.0, "grasas": 14.0},
+    "panchos": {"calorias": 270, "proteinas": 10.0, "carbohidratos": 25.0, "grasas": 14.0},
+    
+    # Grasas, Aceites y Lácteos
+    "mantequilla de mani": {"calorias": 588, "proteinas": 25.0, "carbohidratos": 20.0, "grasas": 50.0},
+    "aceite de oliva": {"calorias": 884, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 100.0},
+    "aceite": {"calorias": 884, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 100.0},
+    "queso cremoso": {"calorias": 290, "proteinas": 19.0, "carbohidratos": 1.5, "grasas": 23.0},
+    "queso cheddar": {"calorias": 402, "proteinas": 25.0, "carbohidratos": 1.3, "grasas": 33.0},
+    "chedar": {"calorias": 402, "proteinas": 25.0, "carbohidratos": 1.3, "grasas": 33.0},
+    "roquefort": {"calorias": 369, "proteinas": 21.0, "carbohidratos": 2.0, "grasas": 30.0},
+    "leche": {"calorias": 60, "proteinas": 3.2, "carbohidratos": 4.7, "grasas": 3.2},
+    "yogur": {"calorias": 63, "proteinas": 3.7, "carbohidratos": 7.0, "grasas": 2.0},
+    "mayonesa": {"calorias": 680, "proteinas": 1.0, "carbohidratos": 1.0, "grasas": 75.0},
+    
+    # Bebidas (con y sin alcohol) y Condimentos líquidos
+    "vinagre de manzana": {"calorias": 21, "proteinas": 0.0, "carbohidratos": 0.9, "grasas": 0.0},
+    "vinagre de alcohol": {"calorias": 21, "proteinas": 0.0, "carbohidratos": 0.9, "grasas": 0.0},
+    "cerveza": {"calorias": 43, "proteinas": 0.5, "carbohidratos": 3.6, "grasas": 0.0},
+    "fernet": {"calorias": 275, "proteinas": 0.0, "carbohidratos": 11.0, "grasas": 0.0},
+    "fernet con coca": {"calorias": 150, "proteinas": 0.0, "carbohidratos": 15.0, "grasas": 0.0},
+    "vino": {"calorias": 85, "proteinas": 0.1, "carbohidratos": 2.6, "grasas": 0.0},
+    "gin": {"calorias": 263, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 0.0},
+    "coca cola": {"calorias": 42, "proteinas": 0.0, "carbohidratos": 10.6, "grasas": 0.0},
+    "sprite": {"calorias": 39, "proteinas": 0.0, "carbohidratos": 9.5, "grasas": 0.0},
+    "fanta": {"calorias": 45, "proteinas": 0.0, "carbohidratos": 12.0, "grasas": 0.0},
+    "coca cola zero": {"calorias": 0, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 0.0},
+    "terma": {"calorias": 30, "proteinas": 0.0, "carbohidratos": 7.0, "grasas": 0.0},
+    "soda": {"calorias": 0, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 0.0},
+    "agua": {"calorias": 0, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 0.0},
+    "mate": {"calorias": 2, "proteinas": 0.0, "carbohidratos": 0.4, "grasas": 0.0},
+    "mate canarias": {"calorias": 2, "proteinas": 0.0, "carbohidratos": 0.4, "grasas": 0.0},
+    "mate baldo": {"calorias": 2, "proteinas": 0.0, "carbohidratos": 0.4, "grasas": 0.0},
+    "mate rei verde": {"calorias": 2, "proteinas": 0.0, "carbohidratos": 0.4, "grasas": 0.0},
+    "cafe con leche": {"calorias": 40, "proteinas": 2.0, "carbohidratos": 4.0, "grasas": 1.8},
+    
+    # Dulces
     "nesquik": {"calorias": 379, "proteinas": 4.5, "carbohidratos": 81.0, "grasas": 2.8},
     "chocotorta": {"calorias": 390, "proteinas": 6.0, "carbohidratos": 48.0, "grasas": 20.0},
     "tiramisu": {"calorias": 280, "proteinas": 4.5, "carbohidratos": 32.0, "grasas": 15.0},
-    "fideos": {"calorias": 131, "proteinas": 5.0, "carbohidratos": 25.0, "grasas": 1.1},
-    "pan": {"calorias": 265, "proteinas": 9.0, "carbohidratos": 49.0, "grasas": 3.2},
-    "leche": {"calorias": 60, "proteinas": 3.2, "carbohidratos": 4.7, "grasas": 3.2},
-    "yogur": {"calorias": 63, "proteinas": 3.7, "carbohidratos": 7.0, "grasas": 2.0},
-    "queso cremon": {"calorias": 290, "proteinas": 19.0, "carbohidratos": 1.5, "grasas": 23.0},
     "dulce de leche": {"calorias": 315, "proteinas": 6.0, "carbohidratos": 55.0, "grasas": 7.5}
 }
 
@@ -87,7 +150,6 @@ def buscar_alimento():
     gramos = float(datos.get('gramos', 100))
     factor = gramos / 100.0
 
-    # 1. Búsqueda en la Tabla Nutricional Argentina
     if alimento_espanol in TABLA_ARGENTINA:
         item = TABLA_ARGENTINA[alimento_espanol]
         return jsonify({
@@ -99,7 +161,6 @@ def buscar_alimento():
             "grasas": round(item["grasas"] * factor, 1)
         })
 
-    # 2. Búsqueda en la API de Open Food Facts (En español y marcas argentinas)
     try:
         url = f"https://es.openfoodfacts.org/cgi/search.pl?search_terms={alimento_espanol}&search_simple=1&action=process&json=1&page_size=1"
         headers = {'User-Agent': 'NutriAppArgentina - Web - Version 1.0'}
@@ -128,7 +189,6 @@ def buscar_alimento():
     except Exception as e:
         pass
 
-    # 3. SI NO SE ENCUENTRA: Avisar para no poner datos falsos
     return jsonify({
         "encontrado": False,
         "error": "Alimento no encontrado en la base de datos. Podés ingresarlo manualmente."
@@ -172,10 +232,19 @@ def cerrar_dia():
             worksheet = hoja_datos.worksheet(nombre_pestana)
         except gspread.exceptions.WorksheetNotFound:
             worksheet = hoja_datos.add_worksheet(title=nombre_pestana, rows="100", cols="16")
+            
+            # Fila 1: Encabezados
             worksheet.append_row([
                 "Fecha", "Día", "Peso (kg)", "Sueño (hs)", "Líquidos (L)", "Digestión", 
                 "Detalle Comidas", "Calorías Consumidas", "Proteínas (g)", "Carbos (g)", 
                 "Grasas (g)", "Actividades", "Gasto (TDEE)", "Balance", "Notas"
+            ])
+            
+            # Fila 2: Meta de Recomposición Corporal
+            worksheet.append_row([
+                "OBJETIVO", "Diario", "89-90", "8", "3.0", "-", 
+                "Meta para perder grasa y mantener músculo ->", "2200", "180", "200", 
+                "75", "Básquet / Gym", "2700", "-500", "Priorizar proteína"
             ])
             
         num_fila = len(worksheet.get_all_values()) + 1
