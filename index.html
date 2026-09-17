@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Nutrición</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --success: #16a34a;
+            --bg: #f3f4f6;
+            --card: #ffffff;
+            --text: #1f2937;
+            --border: #e5e7eb;
+        }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: 0 auto; }
+        h2 { text-align: center; color: var(--primary); font-size: 28px; margin-bottom: 30px; }
+        .card { background: var(--card); padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); margin-bottom: 25px; border: 1px solid var(--border); }
+        .card h3 { margin-top: 0; color: var(--text); font-size: 20px; border-bottom: 2px solid var(--bg); padding-bottom: 10px; margin-bottom: 20px; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+        
+        label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 14px; color: #4b5563; }
+        input, select { width: 100%; padding: 10px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; font-size: 15px; transition: border-color 0.2s; }
+        input:focus, select:focus { outline: none; border-color: var(--primary); }
+        
+        button { background: var(--primary); color: white; border: none; padding: 12px 20px; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 15px; width: 100%; transition: background 0.2s; }
+        button:hover { background: #1d4ed8; }
+        .btn-success { background: var(--success); }
+        .btn-success:hover { background: #15803d; }
+        .btn-secondary { background: #4b5563; margin-top: 10px;}
+        .btn-secondary:hover { background: #374151; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th, td { border-bottom: 1px solid var(--border); padding: 12px 8px; text-align: left; }
+        th { background-color: var(--bg); color: #4b5563; font-weight: 600; }
+        
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 12px; background: #e0e7ff; color: var(--primary); font-size: 12px; font-weight: bold; margin: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>⚡ Dashboard Metabólico</h2>
+    
+    <div class="card">
+        <h3>1. Selección de Perfil</h3>
+        <select id="usuario" onchange="cargarDatosLocal()">
+            <option value="Pancho">Pancho</option>
+            <option value="Angie">Angie</option>
+            <option value="Vitto">Vitto</option>
+        </select>
+    </div>
+
+    <div class="card">
+        <h3>2. Registro Diario (Comidas y Hábitos)</h3>
+        <div class="grid-3">
+            <div>
+                <label>Horario (Ej: 13:00 o Snack)</label>
+                <input type="text" id="horario" placeholder="13:00">
+            </div>
+            <div>
+                <label>Alimento (En Español)</label>
+                <input type="text" id="alimento" placeholder="Arroz integral">
+            </div>
+            <div>
+                <label>Gramos</label>
+                <input type="number" id="gramos" placeholder="150">
+            </div>
+        </div>
+        <button onclick="buscarYAgregar()" style="margin-top: 15px;">➕ Buscar y Agregar Comida</button>
+        <p id="msg-comida" style="color: var(--primary); font-size: 14px; text-align: center; margin-top: 10px;"></p>
+
+        <table id="tabla-comidas">
+            <thead><tr><th>Horario</th><th>Alimento</th><th>Calorías</th><th>Proteínas</th></tr></thead>
+            <tbody></tbody>
+        </table>
+
+        <hr style="border: 0; border-top: 1px solid var(--border); margin: 25px 0;">
+
+        <div class="grid-3">
+            <div>
+                <label>Agua Total (Litros)</label>
+                <input type="number" id="liquidos" placeholder="2.5" step="0.1">
+            </div>
+            <div>
+                <label>Baño (Veces #1 / Orina)</label>
+                <input type="number" id="bano_1" placeholder="5">
+            </div>
+            <div>
+                <label>Baño (Veces #2 / Sólido)</label>
+                <input type="number" id="bano_2" placeholder="1">
+            </div>
+        </div>
+        <button class="btn-secondary" onclick="guardarHabitos()">💾 Guardar Progreso (No cierra el día)</button>
+    </div>
+
+    <div class="card">
+        <h3>3. Resumen y Cierre de Jornada</h3>
+        <div class="grid-2">
+            <div>
+                <label>Peso Corporal (kg)</label>
+                <input type="number" id="peso" placeholder="90.5" step="0.1">
+            </div>
+            <div>
+                <label>Horas de Sueño Anoche</label>
+                <input type="number" id="sueno" placeholder="7">
+            </div>
+        </div>
+
+        <h4 style="margin-top: 25px; margin-bottom: 10px;">Entrenamiento / Actividad</h4>
+        <div class="grid-3">
+            <div>
+                <label>Tipo de Actividad</label>
+                <select id="act_select">
+                    <option value="Basquet">Básquet</option>
+                    <option value="Gym">Gym</option>
+                    <option value="Caminata">Caminata</option>
+                    <option value="Descanso">Descanso</option>
+                </select>
+            </div>
+            <div>
+                <label>Horas Dedicadas</label>
+                <input type="number" id="act_horas" placeholder="1.5" step="0.5">
+            </div>
+            <div style="display: flex; align-items: flex-end;">
+                <button onclick="agregarActividad()">Agregar</button>
+            </div>
+        </div>
+        
+        <div id="lista-actividades" style="margin-top: 15px; min-height: 30px;">
+            <!-- Acá aparecen las etiquetas de las actividades agregadas -->
+        </div>
+
+        <button class="btn-success" onclick="cerrarDia()" style="margin-top: 25px;">✅ Finalizar Día y Enviar a Google Sheets</button>
+    </div>
+</div>
+
+<script>
+    let comidasDia = [];
+    let actividadesDia = [];
+
+    // Guardado persistente en el navegador
+    function guardarDatosLocal() {
+        const usuario = document.getElementById("usuario").value;
+        const datosTemporales = {
+            comidas: comidasDia,
+            actividades: actividadesDia,
+            liquidos: document.getElementById("liquidos").value,
+            bano_1: document.getElementById("bano_1").value,
+            bano_2: document.getElementById("bano_2").value,
+            peso: document.getElementById("peso").value,
+            sueno: document.getElementById("sueno").value
+        };
+        localStorage.setItem(`nutricion_${usuario}`, JSON.stringify(datosTemporales));
+    }
+
+    function cargarDatosLocal() {
+        const usuario = document.getElementById("usuario").value;
+        const guardado = localStorage.getItem(`nutricion_${usuario}`);
+        
+        if (guardado) {
+            const datos = JSON.parse(guardado);
+            comidasDia = datos.comidas || [];
+            actividadesDia = datos.actividades || [];
+            document.getElementById("liquidos").value = datos.liquidos || "";
+            document.getElementById("bano_1").value = datos.bano_1 || "";
+            document.getElementById("bano_2").value = datos.bano_2 || "";
+            document.getElementById("peso").value = datos.peso || "";
+            document.getElementById("sueno").value = datos.sueno || "";
+        } else {
+            comidasDia = []; actividadesDia = [];
+            document.querySelectorAll("input").forEach(i => i.value = "");
+        }
+        renderizarTablas();
+    }
+
+    function renderizarTablas() {
+        const tbody = document.querySelector("#tabla-comidas tbody");
+        tbody.innerHTML = "";
+        comidasDia.forEach(c => {
+            tbody.innerHTML += `<tr><td>${c.horario}</td><td>${c.nombre_original}</td><td>${c.calorias} kcal</td><td>${c.proteinas} g</td></tr>`;
+        });
+
+        const actDiv = document.getElementById("lista-actividades");
+        actDiv.innerHTML = "";
+        actividadesDia.forEach(a => {
+            actDiv.innerHTML += `<span class="badge">${a.nombre} (${a.horas}h)</span>`;
+        });
+    }
+
+    async function buscarYAgregar() {
+        const alimento = document.getElementById("alimento").value;
+        const gramos = document.getElementById("gramos").value;
+        const horario = document.getElementById("horario").value;
+        const msg = document.getElementById("msg-comida");
+
+        if(!alimento || !gramos || !horario) { msg.innerText = "Llená los 3 campos."; return; }
+
+        msg.innerText = "Traduciendo y buscando...";
+        const response = await fetch('/buscar_alimento', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ alimento: alimento, gramos: gramos })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            data.horario = horario;
+            comidasDia.push(data);
+            guardarDatosLocal();
+            renderizarTablas();
+            msg.innerText = "¡Agregado con éxito!";
+            document.getElementById("alimento").value = "";
+        } else {
+            msg.innerText = "Error: No se encontró en USDA.";
+        }
+    }
+
+    function guardarHabitos() {
+        guardarDatosLocal();
+        alert("Progreso del mediodía guardado en tu navegador.");
+    }
+
+    function agregarActividad() {
+        const select = document.getElementById("act_select");
+        const horas = document.getElementById("act_horas").value;
+        if(horas > 0) {
+            actividadesDia.push({ nombre: select.value, horas: horas });
+            guardarDatosLocal();
+            renderizarTablas();
+            document.getElementById("act_horas").value = "";
+        }
+    }
+
+    async function cerrarDia() {
+        const usuario = document.getElementById("usuario").value;
+        const data = {
+            usuario: usuario,
+            peso: document.getElementById("peso").value || 0,
+            sueno: document.getElementById("sueno").value || 0,
+            liquidos: document.getElementById("liquidos").value || 0,
+            bano_1: document.getElementById("bano_1").value || 0,
+            bano_2: document.getElementById("bano_2").value || 0,
+            actividades: actividadesDia.length > 0 ? actividadesDia : [{nombre: "Descanso", horas: 24}],
+            comidas: comidasDia
+        };
+
+        const response = await fetch('/cerrar_dia', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            alert(result.mensaje);
+            localStorage.removeItem(`nutricion_${usuario}`); // Limpiar caché
+            cargarDatosLocal(); // Resetear pantalla
+        } else {
+            alert("Error al enviar a Excel: " + result.error);
+        }
+    }
+
+    // Cargar datos al iniciar
+    window.onload = cargarDatosLocal;
+</script>
+</body>
+</html>
