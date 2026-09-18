@@ -192,6 +192,12 @@ TABLA_ARGENTINA = {
     # Panadería dulce
     "churros": {"calorias": 400, "proteinas": 5.0, "carbohidratos": 40.0, "grasas": 22.0},
     "alfajor de maicena": {"calorias": 390, "proteinas": 5.0, "carbohidratos": 60.0, "grasas": 15.0},
+
+# Panqueques y Tortas
+    "panqueques proteicos": {"calorias": 160, "proteinas": 15.0, "carbohidratos": 18.0, "grasas": 3.0},
+    "panqueques de avena": {"calorias": 180, "proteinas": 7.0, "carbohidratos": 28.0, "grasas": 4.5},
+    "torta de aceite": {"calorias": 380, "proteinas": 5.0, "carbohidratos": 50.0, "grasas": 18.0},
+    "torta": {"calorias": 350, "proteinas": 5.0, "carbohidratos": 55.0, "grasas": 13.0},
 }
 
 def calcular_gasto_total(usuario, actividades):
