@@ -9,10 +9,10 @@ app = Flask(__name__)
 # Configuración de usuarios y métricas METs
 USUARIOS = {
     "Pancho": {"peso_base": 90, "altura_cm": 185, "edad": 20, "sexo": "M"},
-    "Angie": {"peso_base": 60, "altura_cm": 165, "edad": 20, "sexo": "F"},
-    "Vitto": {"peso_base": 75, "altura_cm": 170, "edad": 20, "sexo": "M"},
-    "Fede": {"peso_base": 80, "altura_cm": 175, "edad": 30, "sexo": "M"},
-    "Gabi": {"peso_base": 65, "altura_cm": 160, "edad": 30, "sexo": "F"}
+    "Angie": {"peso_base": 60, "altura_cm": 165, "edad": 18, "sexo": "F"},
+    "Vitto": {"peso_base": 85, "altura_cm": 170, "edad": 22, "sexo": "M"},
+    "Fede": {"peso_base": 100, "altura_cm": 180, "edad": 52, "sexo": "M"},
+    "Gabi": {"peso_base": 70, "altura_cm": 165, "edad": 53, "sexo": "F"}
 }
 
 METS = {
@@ -36,16 +36,31 @@ MESES_ESPANOL = {
 
 # Tabla de composición de Alimentos Argentina (Valores reales por 100g / 100ml cocidos)
 TABLA_ARGENTINA = {
-    # Carnes y Proteínas
+    # Huevos y Pollo
     "huevo": {"calorias": 155, "proteinas": 12.6, "carbohidratos": 1.1, "grasas": 10.6},
     "huevos": {"calorias": 155, "proteinas": 12.6, "carbohidratos": 1.1, "grasas": 10.6},
     "huevo duro": {"calorias": 155, "proteinas": 12.6, "carbohidratos": 1.1, "grasas": 10.6},
     "pechuga de pollo": {"calorias": 165, "proteinas": 31.0, "carbohidratos": 0.0, "grasas": 3.6},
     "pollo": {"calorias": 165, "proteinas": 31.0, "carbohidratos": 0.0, "grasas": 3.6},
-    "carne de cerdo": {"calorias": 242, "proteinas": 27.0, "carbohidratos": 0.0, "grasas": 14.0},
+    "facturas": {"calorias": 380, "proteinas": 6.0, "carbohidratos": 45.0, "grasas": 18.0},
+    "factura": {"calorias": 380, "proteinas": 6.0, "carbohidratos": 45.0, "grasas": 18.0},
+    "tarta de verdura y pollo": {"calorias": 180, "proteinas": 10.0, "carbohidratos": 15.0, "grasas": 9.0},
+    "pera": {"calorias": 57, "proteinas": 0.4, "carbohidratos": 15.2, "grasas": 0.1},
+    "mandarina": {"calorias": 53, "proteinas": 0.8, "carbohidratos": 13.3, "grasas": 0.3},
+    "manzana verde": {"calorias": 52, "proteinas": 0.3, "carbohidratos": 14.0, "grasas": 0.2},
+    "capuccino": {"calorias": 45, "proteinas": 3.0, "carbohidratos": 5.0, "grasas": 1.5},
+    "cappuccino": {"calorias": 45, "proteinas": 3.0, "carbohidratos": 5.0, "grasas": 1.5},
+    # Carnes y Parrilla Argentina
     "carne vacuna": {"calorias": 250, "proteinas": 26.0, "carbohidratos": 0.0, "grasas": 15.0},
-    "asado": {"calorias": 290, "proteinas": 24.0, "carbohidratos": 0.0, "grasas": 21.0},
     "carne picada": {"calorias": 220, "proteinas": 26.0, "carbohidratos": 0.0, "grasas": 12.0},
+    "carne de cerdo": {"calorias": 242, "proteinas": 27.0, "carbohidratos": 0.0, "grasas": 14.0},
+    "asado": {"calorias": 290, "proteinas": 24.0, "carbohidratos": 0.0, "grasas": 21.0},
+    "tapa de asado": {"calorias": 260, "proteinas": 25.0, "carbohidratos": 0.0, "grasas": 17.0},
+    "vacio": {"calorias": 220, "proteinas": 26.0, "carbohidratos": 0.0, "grasas": 13.0},
+    "chorizo": {"calorias": 330, "proteinas": 14.0, "carbohidratos": 2.0, "grasas": 30.0},
+    "choripan": {"calorias": 450, "proteinas": 18.0, "carbohidratos": 40.0, "grasas": 31.0},
+    "morcilla": {"calorias": 300, "proteinas": 12.0, "carbohidratos": 1.0, "grasas": 27.0},
+    "chinchulines": {"calorias": 200, "proteinas": 14.0, "carbohidratos": 0.0, "grasas": 16.0},
     
     # Milanesas (Promedio fritas/horno)
     "milanesa": {"calorias": 260, "proteinas": 19.0, "carbohidratos": 15.0, "grasas": 13.0},
@@ -54,19 +69,29 @@ TABLA_ARGENTINA = {
     "milanesa de cerdo": {"calorias": 270, "proteinas": 17.0, "carbohidratos": 15.0, "grasas": 15.0},
     "milanesa de soja": {"calorias": 220, "proteinas": 14.0, "carbohidratos": 18.0, "grasas": 10.0},
     
-    # Carbohidratos y Guarniciones
+    # Pastas, Arroz y Guarniciones
     "arroz": {"calorias": 130, "proteinas": 2.7, "carbohidratos": 28.0, "grasas": 0.3},
     "fideos": {"calorias": 131, "proteinas": 5.0, "carbohidratos": 25.0, "grasas": 1.1},
+    "ravioles": {"calorias": 200, "proteinas": 8.0, "carbohidratos": 30.0, "grasas": 5.0},
+    "ñoquis": {"calorias": 160, "proteinas": 4.0, "carbohidratos": 32.0, "grasas": 1.5},
     "pure": {"calorias": 88, "proteinas": 1.5, "carbohidratos": 15.0, "grasas": 3.0},
     "puré": {"calorias": 88, "proteinas": 1.5, "carbohidratos": 15.0, "grasas": 3.0},
     "pure de papa": {"calorias": 88, "proteinas": 1.5, "carbohidratos": 15.0, "grasas": 3.0},
     "pure de calabaza": {"calorias": 45, "proteinas": 1.0, "carbohidratos": 10.0, "grasas": 0.5},
     "calabaza": {"calorias": 40, "proteinas": 1.0, "carbohidratos": 9.0, "grasas": 0.2},
     "pastel de papa": {"calorias": 140, "proteinas": 6.0, "carbohidratos": 12.0, "grasas": 7.0},
-    "tostadas de arroz": {"calorias": 380, "proteinas": 8.0, "carbohidratos": 82.0, "grasas": 2.0},
+    
+    # Panadería, Pizzas y Empanadas
     "pan": {"calorias": 265, "proteinas": 9.0, "carbohidratos": 49.0, "grasas": 3.2},
+    "pan frances": {"calorias": 265, "proteinas": 9.0, "carbohidratos": 49.0, "grasas": 3.2},
+    "pan lactal": {"calorias": 260, "proteinas": 8.0, "carbohidratos": 50.0, "grasas": 3.0},
+    "pan lactal integral": {"calorias": 250, "proteinas": 10.0, "carbohidratos": 45.0, "grasas": 4.0},
+    "galleta de arroz integral": {"calorias": 380, "proteinas": 8.0, "carbohidratos": 82.0, "grasas": 2.0},
+    "tostadas de arroz": {"calorias": 380, "proteinas": 8.0, "carbohidratos": 82.0, "grasas": 2.0},
     "empanada de carne": {"calorias": 260, "proteinas": 10.0, "carbohidratos": 25.0, "grasas": 13.0},
+    "empanada de jamon y queso": {"calorias": 250, "proteinas": 11.0, "carbohidratos": 24.0, "grasas": 12.0},
     "tarta de jamon y queso": {"calorias": 280, "proteinas": 12.0, "carbohidratos": 22.0, "grasas": 15.0},
+    "pizza": {"calorias": 260, "proteinas": 11.0, "carbohidratos": 33.0, "grasas": 10.0},
     
     # Verduras y Frutas
     "tomate": {"calorias": 18, "proteinas": 0.9, "carbohidratos": 3.9, "grasas": 0.2},
@@ -77,12 +102,16 @@ TABLA_ARGENTINA = {
     "banana": {"calorias": 89, "proteinas": 1.1, "carbohidratos": 22.8, "grasas": 0.3},
     "manzana": {"calorias": 52, "proteinas": 0.3, "carbohidratos": 13.8, "grasas": 0.2},
     
-    # Comida Rápida y Fiambres
+    # Comida Rápida, Fiambres y Aderezos
     "salchicha": {"calorias": 250, "proteinas": 11.0, "carbohidratos": 3.0, "grasas": 21.0},
     "pancho": {"calorias": 270, "proteinas": 10.0, "carbohidratos": 25.0, "grasas": 14.0},
     "panchos": {"calorias": 270, "proteinas": 10.0, "carbohidratos": 25.0, "grasas": 14.0},
+    "mayonesa": {"calorias": 680, "proteinas": 1.0, "carbohidratos": 1.0, "grasas": 75.0},
+    "ketchup": {"calorias": 110, "proteinas": 1.0, "carbohidratos": 25.0, "grasas": 0.0},
+    "mostaza": {"calorias": 60, "proteinas": 3.0, "carbohidratos": 5.0, "grasas": 3.0},
+    "salsa golf": {"calorias": 450, "proteinas": 1.0, "carbohidratos": 15.0, "grasas": 45.0},
     
-    # Grasas, Aceites y Lácteos
+    # Grasas, Lácteos y Untables
     "mantequilla de mani": {"calorias": 588, "proteinas": 25.0, "carbohidratos": 20.0, "grasas": 50.0},
     "aceite de oliva": {"calorias": 884, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 100.0},
     "aceite": {"calorias": 884, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 100.0},
@@ -90,11 +119,13 @@ TABLA_ARGENTINA = {
     "queso cheddar": {"calorias": 402, "proteinas": 25.0, "carbohidratos": 1.3, "grasas": 33.0},
     "chedar": {"calorias": 402, "proteinas": 25.0, "carbohidratos": 1.3, "grasas": 33.0},
     "roquefort": {"calorias": 369, "proteinas": 21.0, "carbohidratos": 2.0, "grasas": 30.0},
+    "queso crema": {"calorias": 250, "proteinas": 6.0, "carbohidratos": 4.0, "grasas": 24.0},
     "leche": {"calorias": 60, "proteinas": 3.2, "carbohidratos": 4.7, "grasas": 3.2},
     "yogur": {"calorias": 63, "proteinas": 3.7, "carbohidratos": 7.0, "grasas": 2.0},
-    "mayonesa": {"calorias": 680, "proteinas": 1.0, "carbohidratos": 1.0, "grasas": 75.0},
+    "mermelada": {"calorias": 250, "proteinas": 0.0, "carbohidratos": 60.0, "grasas": 0.0},
+    "dulce de leche": {"calorias": 315, "proteinas": 6.0, "carbohidratos": 55.0, "grasas": 7.5},
     
-    # Bebidas (con y sin alcohol) y Condimentos líquidos
+    # Bebidas (con y sin alcohol)
     "vinagre de manzana": {"calorias": 21, "proteinas": 0.0, "carbohidratos": 0.9, "grasas": 0.0},
     "vinagre de alcohol": {"calorias": 21, "proteinas": 0.0, "carbohidratos": 0.9, "grasas": 0.0},
     "cerveza": {"calorias": 43, "proteinas": 0.5, "carbohidratos": 3.6, "grasas": 0.0},
@@ -115,11 +146,52 @@ TABLA_ARGENTINA = {
     "mate rei verde": {"calorias": 2, "proteinas": 0.0, "carbohidratos": 0.4, "grasas": 0.0},
     "cafe con leche": {"calorias": 40, "proteinas": 2.0, "carbohidratos": 4.0, "grasas": 1.8},
     
-    # Dulces
+    # Snacks y Dulces
+    
+    "helado": {"calorias": 200, "proteinas": 4.0, "carbohidratos": 24.0, "grasas": 10.0},
+    "alfajor": {"calorias": 380, "proteinas": 6.0, "carbohidratos": 55.0, "grasas": 15.0},
+    "bizcochitos": {"calorias": 450, "proteinas": 10.0, "carbohidratos": 50.0, "grasas": 25.0},
+    "don satur": {"calorias": 450, "proteinas": 10.0, "carbohidratos": 50.0, "grasas": 25.0},
     "nesquik": {"calorias": 379, "proteinas": 4.5, "carbohidratos": 81.0, "grasas": 2.8},
     "chocotorta": {"calorias": 390, "proteinas": 6.0, "carbohidratos": 48.0, "grasas": 20.0},
-    "tiramisu": {"calorias": 280, "proteinas": 4.5, "carbohidratos": 32.0, "grasas": 15.0},
-    "dulce de leche": {"calorias": 315, "proteinas": 6.0, "carbohidratos": 55.0, "grasas": 7.5}
+    "tiramisu": {"calorias": 280, "proteinas": 4.5, "carbohidratos": 32.0, "grasas": 15.0} 
+    # Tartas y Empanadas
+    "tarta de verdura": {"calorias": 150, "proteinas": 5.0, "carbohidratos": 18.0, "grasas": 7.0},
+    "empanada de verdura": {"calorias": 210, "proteinas": 6.0, "carbohidratos": 26.0, "grasas": 9.0},
+    "empanada de pollo": {"calorias": 240, "proteinas": 12.0, "carbohidratos": 25.0, "grasas": 10.0},
+    
+    # Salsas y Lácteos
+    "salsa de tomate": {"calorias": 30, "proteinas": 1.0, "carbohidratos": 6.0, "grasas": 0.2},
+    "crema de leche": {"calorias": 340, "proteinas": 2.0, "carbohidratos": 3.0, "grasas": 35.0},
+    
+    # Bebidas y Cítricos
+    "limon": {"calorias": 29, "proteinas": 1.1, "carbohidratos": 9.3, "grasas": 0.3},
+    "jugo de limon": {"calorias": 22, "proteinas": 0.4, "carbohidratos": 7.0, "grasas": 0.2},
+    "agua mineral": {"calorias": 0, "proteinas": 0.0, "carbohidratos": 0.0, "grasas": 0.0},
+    "agua con limon": {"calorias": 2, "proteinas": 0.0, "carbohidratos": 0.5, "grasas": 0.0},
+    "limonada": {"calorias": 40, "proteinas": 0.0, "carbohidratos": 10.0, "grasas": 0.0},
+    
+    # Frituras, Snacks y Picadas
+    "papas fritas": {"calorias": 312, "proteinas": 3.4, "carbohidratos": 41.0, "grasas": 15.0}, # De rotisería/bastón
+    "papas fritas de paquete": {"calorias": 536, "proteinas": 6.0, "carbohidratos": 50.0, "grasas": 35.0}, # Lays
+    "chizitos": {"calorias": 500, "proteinas": 6.0, "carbohidratos": 55.0, "grasas": 30.0},
+    "palitos": {"calorias": 480, "proteinas": 9.0, "carbohidratos": 60.0, "grasas": 22.0},
+    "nachos": {"calorias": 500, "proteinas": 6.0, "carbohidratos": 60.0, "grasas": 25.0},
+    "mani salado": {"calorias": 590, "proteinas": 25.0, "carbohidratos": 15.0, "grasas": 50.0},
+    "puflitos": {"calorias": 400, "proteinas": 4.0, "carbohidratos": 75.0, "grasas": 8.0},
+    
+    # Galletitas y Chocolates
+    "galletitas de agua": {"calorias": 420, "proteinas": 10.0, "carbohidratos": 70.0, "grasas": 12.0},
+    "galletitas dulces": {"calorias": 450, "proteinas": 6.0, "carbohidratos": 70.0, "grasas": 16.0}, # Surtidas
+    "chocolinas": {"calorias": 440, "proteinas": 6.0, "carbohidratos": 72.0, "grasas": 14.0},
+    "oreo": {"calorias": 480, "proteinas": 5.0, "carbohidratos": 68.0, "grasas": 20.0},
+    "chocolate": {"calorias": 535, "proteinas": 8.0, "carbohidratos": 59.0, "grasas": 30.0}, # Con leche
+    "chocolate amargo": {"calorias": 550, "proteinas": 8.0, "carbohidratos": 45.0, "grasas": 35.0},
+    "chocolate blanco": {"calorias": 540, "proteinas": 6.0, "carbohidratos": 59.0, "grasas": 32.0},
+    
+    # Panadería dulce
+    "churros": {"calorias": 400, "proteinas": 5.0, "carbohidratos": 40.0, "grasas": 22.0},
+    "alfajor de maicena": {"calorias": 390, "proteinas": 5.0, "carbohidratos": 60.0, "grasas": 15.0},
 }
 
 def calcular_gasto_total(usuario, actividades):
@@ -246,6 +318,9 @@ def cerrar_dia():
                 "Meta para perder grasa y mantener músculo ->", "2200", "180", "200", 
                 "75", "Básquet / Gym", "2700", "-500", "Priorizar proteína"
             ])
+            
+            # Comando de gspread para inmovilizar las primeras 2 filas visualmente
+            worksheet.freeze(rows=2)
             
         num_fila = len(worksheet.get_all_values()) + 1
         formula_balance = f"=H{num_fila}-M{num_fila}"
