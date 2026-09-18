@@ -61,7 +61,36 @@ TABLA_ARGENTINA = {
     "choripan": {"calorias": 450, "proteinas": 18.0, "carbohidratos": 40.0, "grasas": 31.0},
     "morcilla": {"calorias": 300, "proteinas": 12.0, "carbohidratos": 1.0, "grasas": 27.0},
     "chinchulines": {"calorias": 200, "proteinas": 14.0, "carbohidratos": 0.0, "grasas": 16.0},
+    # Facturas y Panadería Argentina
+    "chipa": {"calorias": 330, "proteinas": 10.0, "carbohidratos": 40.0, "grasas": 15.0},
+    "media luna": {"calorias": 400, "proteinas": 7.0, "carbohidratos": 45.0, "grasas": 21.0},
+    "medialuna": {"calorias": 400, "proteinas": 7.0, "carbohidratos": 45.0, "grasas": 21.0},
+    "medialuna de grasa": {"calorias": 420, "proteinas": 8.0, "carbohidratos": 45.0, "grasas": 23.0},
+    "torta negra": {"calorias": 380, "proteinas": 6.0, "carbohidratos": 60.0, "grasas": 13.0},
+    "vigilante": {"calorias": 350, "proteinas": 6.0, "carbohidratos": 48.0, "grasas": 15.0},
+    "bola de fraile": {"calorias": 410, "proteinas": 6.0, "carbohidratos": 50.0, "grasas": 20.0},
+    "cañoncito de dulce de leche": {"calorias": 430, "proteinas": 5.0, "carbohidratos": 55.0, "grasas": 21.0},
+
+    # Picada, Fiambres y Agregados
+    "cebolla": {"calorias": 40, "proteinas": 1.1, "carbohidratos": 9.0, "grasas": 0.1},
+    "cebolla salteada": {"calorias": 85, "proteinas": 1.5, "carbohidratos": 10.0, "grasas": 5.0},
+    "panceta": {"calorias": 450, "proteinas": 14.0, "carbohidratos": 1.0, "grasas": 43.0},
+    "salamin": {"calorias": 400, "proteinas": 22.0, "carbohidratos": 1.5, "grasas": 35.0},
+    "salame": {"calorias": 400, "proteinas": 22.0, "carbohidratos": 1.5, "grasas": 35.0},
+    "jamon cocido": {"calorias": 110, "proteinas": 18.0, "carbohidratos": 1.5, "grasas": 3.5},
+    "jamon crudo": {"calorias": 240, "proteinas": 26.0, "carbohidratos": 0.0, "grasas": 15.0},
+    "mortadela": {"calorias": 310, "proteinas": 16.0, "carbohidratos": 3.0, "grasas": 25.0},
     
+    # Clásicos de Parrilla y Rotisería
+    "provoleta": {"calorias": 350, "proteinas": 22.0, "carbohidratos": 2.0, "grasas": 28.0},
+    "matambre a la pizza": {"calorias": 280, "proteinas": 20.0, "carbohidratos": 5.0, "grasas": 20.0},
+    "tortilla de papa": {"calorias": 170, "proteinas": 5.0, "carbohidratos": 18.0, "grasas": 9.0},
+    # Tubérculos cocidos/hervidos
+    "papa hervida": {"calorias": 87, "proteinas": 1.9, "carbohidratos": 20.0, "grasas": 0.1},
+    "camote": {"calorias": 90, "proteinas": 2.0, "carbohidratos": 21.0, "grasas": 0.1},
+    "calamote": {"calorias": 90, "proteinas": 2.0, "carbohidratos": 21.0, "grasas": 0.1},
+    "batata": {"calorias": 90, "proteinas": 2.0, "carbohidratos": 21.0, "grasas": 0.1},
+    "boniato": {"calorias": 90, "proteinas": 2.0, "carbohidratos": 21.0, "grasas": 0.1},
     # Milanesas (Promedio fritas/horno)
     "milanesa": {"calorias": 260, "proteinas": 19.0, "carbohidratos": 15.0, "grasas": 13.0},
     "milanesa de carne": {"calorias": 260, "proteinas": 19.0, "carbohidratos": 15.0, "grasas": 13.0},
@@ -198,6 +227,14 @@ TABLA_ARGENTINA = {
     "panqueques de avena": {"calorias": 180, "proteinas": 7.0, "carbohidratos": 28.0, "grasas": 4.5},
     "torta de aceite": {"calorias": 380, "proteinas": 5.0, "carbohidratos": 50.0, "grasas": 18.0},
     "torta": {"calorias": 350, "proteinas": 5.0, "carbohidratos": 55.0, "grasas": 13.0},
+
+# Legumbres, Guisos y Endulzantes
+    "lenteja": {"calorias": 116, "proteinas": 9.0, "carbohidratos": 20.0, "grasas": 0.4},
+    "lentejas": {"calorias": 116, "proteinas": 9.0, "carbohidratos": 20.0, "grasas": 0.4},
+    "guiso de lentejas": {"calorias": 160, "proteinas": 8.0, "carbohidratos": 15.0, "grasas": 7.0},
+    "arvejas": {"calorias": 81, "proteinas": 5.0, "carbohidratos": 14.0, "grasas": 0.4},
+    "arbejas": {"calorias": 81, "proteinas": 5.0, "carbohidratos": 14.0, "grasas": 0.4},
+    "miel": {"calorias": 304, "proteinas": 0.3, "carbohidratos": 82.0, "grasas": 0.0},
 }
 
 def calcular_gasto_total(usuario, actividades):
