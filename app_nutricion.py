@@ -80,6 +80,19 @@ TABLA_ARGENTINA = {
     "jamon cocido": {"calorias": 110, "proteinas": 18.0, "carbohidratos": 1.5, "grasas": 3.5},
     "jamon crudo": {"calorias": 240, "proteinas": 26.0, "carbohidratos": 0.0, "grasas": 15.0},
     "mortadela": {"calorias": 310, "proteinas": 16.0, "carbohidratos": 3.0, "grasas": 25.0},
+    # === SORRENTINOS ===
+    "sorrentinos de jamon y ricota": {"calorias": 250, "proteinas": 11.0, "carbohidratos": 30.0, "grasas": 9.0},
+    "sorrentinos de ricota y nuez": {"calorias": 275, "proteinas": 9.0, "carbohidratos": 30.0, "grasas": 13.0},
+    "sorrentinos de calabaza y ricota": {"calorias": 220, "proteinas": 8.0, "carbohidratos": 33.0, "grasas": 6.0},
+    "sorrentinos caprese": {"calorias": 240, "proteinas": 10.0, "carbohidratos": 31.0, "grasas": 8.0},
+    "sorrentinos de ricota y albahaca": {"calorias": 230, "proteinas": 10.0, "carbohidratos": 30.0, "grasas": 7.0},
+    "sorrentinos de bondiola": {"calorias": 280, "proteinas": 13.0, "carbohidratos": 29.0, "grasas": 12.0},
+    "sorrentinos de cordero": {"calorias": 285, "proteinas": 13.0, "carbohidratos": 29.0, "grasas": 13.0},
+    "sorrentinos de salmon": {"calorias": 265, "proteinas": 12.0, "carbohidratos": 29.0, "grasas": 11.0},
+    "sorrentinos de roquefort": {"calorias": 290, "proteinas": 12.0, "carbohidratos": 29.0, "grasas": 14.0},
+    "sorrentinos de pollo y verdura": {"calorias": 235, "proteinas": 12.0, "carbohidratos": 30.0, "grasas": 7.0},
+    "sorrentinos de calabaza ricota y nuez": {"calorias": 245, "proteinas": 8.5, "carbohidratos": 31.0, "grasas": 10.0},
+    "sorrentinos de calabaza, ricota y nuez": {"calorias": 245, "proteinas": 8.5, "carbohidratos": 31.0, "grasas": 10.0},
 
 # === EMPANADAS ===
     "empanada de carne dulce": {"calorias": 265, "proteinas": 10.0, "carbohidratos": 28.0, "grasas": 12.0},
@@ -372,7 +385,8 @@ TABLA_ARGENTINA = {
     "yogur": {"calorias": 63, "proteinas": 3.7, "carbohidratos": 7.0, "grasas": 2.0},
     "mermelada": {"calorias": 250, "proteinas": 0.0, "carbohidratos": 60.0, "grasas": 0.0},
     "dulce de leche": {"calorias": 315, "proteinas": 6.0, "carbohidratos": 55.0, "grasas": 7.5},
-    
+    "crema de leche": {"calorias": 340, "proteinas": 2.0, "carbohidratos": 3.0, "grasas": 35.0},
+    "crema": {"calorias": 340, "proteinas": 2.0, "carbohidratos": 3.0, "grasas": 35.0},
     # Bebidas (con y sin alcohol)
     "vinagre de manzana": {"calorias": 21, "proteinas": 0.0, "carbohidratos": 0.9, "grasas": 0.0},
     "vinagre de alcohol": {"calorias": 21, "proteinas": 0.0, "carbohidratos": 0.9, "grasas": 0.0},
