@@ -71,6 +71,16 @@ TABLA_ARGENTINA = {
     "bola de fraile": {"calorias": 410, "proteinas": 6.0, "carbohidratos": 50.0, "grasas": 20.0},
     "cañoncito de dulce de leche": {"calorias": 430, "proteinas": 5.0, "carbohidratos": 55.0, "grasas": 21.0},
 
+    # === PIZZAS NUEVAS ===
+    "pizza de rucula y jamon crudo": {"calorias": 250, "proteinas": 12.0, "carbohidratos": 31.0, "grasas": 9.0},
+    "pizza de ojo de buey": {"calorias": 280, "proteinas": 12.0, "carbohidratos": 30.0, "grasas": 12.0},
+    "pizza de bolognesa": {"calorias": 270, "proteinas": 12.0, "carbohidratos": 30.0, "grasas": 11.0},
+    
+    # === CANELONES Y TARTAS NUEVAS ===
+    "canelones de verdura y pollo": {"calorias": 180, "proteinas": 9.0, "carbohidratos": 22.0, "grasas": 6.0},
+    "tarta de verdura y pollo": {"calorias": 180, "proteinas": 10.0, "carbohidratos": 15.0, "grasas": 9.0},
+    "tarta de jamon queso y tomate": {"calorias": 220, "proteinas": 10.0, "carbohidratos": 20.0, "grasas": 11.0},
+    "tarta de jamon, queso y tomate": {"calorias": 220, "proteinas": 10.0, "carbohidratos": 20.0, "grasas": 11.0},
     # Picada, Fiambres y Agregados
     "cebolla": {"calorias": 40, "proteinas": 1.1, "carbohidratos": 9.0, "grasas": 0.1},
     "cebolla salteada": {"calorias": 85, "proteinas": 1.5, "carbohidratos": 10.0, "grasas": 5.0},
