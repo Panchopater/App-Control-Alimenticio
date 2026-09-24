@@ -34,7 +34,7 @@ MESES_ESPANOL = {
     "September": "Septiembre", "October": "Octubre", "November": "Noviembre", "December": "Diciembre"
 }
 
-# Tabla de composición de Alimentos Argentina (Valores reales por 100g / 100ml cocidos)
+
 # Tabla de composición de Alimentos Argentina (Valores reales por 100g / 100ml cocidos)
 TABLA_ARGENTINA = {
     # === BÁSICOS, CARNES Y POLLO ===
