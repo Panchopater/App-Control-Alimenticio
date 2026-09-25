@@ -367,6 +367,10 @@ TABLA_ARGENTINA = {
     "dulce de leche": {"calorias": 315, "proteinas": 6.0, "carbohidratos": 55.0, "grasas": 7.5},
     "mermelada": {"calorias": 250, "proteinas": 0.0, "carbohidratos": 60.0, "grasas": 0.0},
     "miel": {"calorias": 304, "proteinas": 0.3, "carbohidratos": 82.0, "grasas": 0.0},
+    "chocolate shot": {"calorias": 535, "proteinas": 9.5, "carbohidratos": 54.0, "grasas": 31.0},
+    "shot": {"calorias": 535, "proteinas": 9.5, "carbohidratos": 54.0, "grasas": 31.0},
+    "chocolate en rama amargo de rapanui": {"calorias": 550, "proteinas": 7.0, "carbohidratos": 48.0, "grasas": 36.0},
+    "chocolate en rama amargo": {"calorias": 550, "proteinas": 7.0, "carbohidratos": 48.0, "grasas": 36.0},
 
     # === COOKIES ===
     "cookie": {"calorias": 420, "proteinas": 5.0, "carbohidratos": 60.0, "grasas": 18.0},
